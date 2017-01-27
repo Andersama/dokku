@@ -46,6 +46,20 @@ dokku postgres:link rails-database ruby-rails-sample
 
 > You can link a single service to multiple applications or use one service per application.
 
+### Configure SSH Keys
+
+> Make sure your local git repository is configured to use the SSH key you've installed.
+
+On most installations of git the default key used is found in `id_rsa.pub`, however you may have stored your key elsewhere. A mismatched key may cause some serious frustrations trying to deploy your app. See [here](http://stackoverflow.com/questions/7927750/specify-an-ssh-key-for-git-push-for-a-given-domain) to configure git to use a specific key for your domain.
+
+You may install a key to dokku like so: 
+```shell
+# from your local machine
+cat /path/to/.ssh/[id_rsa_file_of_choice].pub | ssh root@[your.dokku] "sudo sshcommand acl-add dokku [description]"
+```
+
+> Modify the following git remote command as required.
+
 ### Deploy the app
 
 Now you can deploy the `ruby-rails-sample` app to your Dokku server. All you have to do is add a remote to name the app. Applications are created on-the-fly on the Dokku server.
